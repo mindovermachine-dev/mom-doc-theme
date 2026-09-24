@@ -11,10 +11,19 @@ import {
   giscusClientConfig,
   giscusEnabledByDefault,
 } from "./src/config/giscus.mjs";
+import { resolveSiteConfig } from "./src/config/site-config.mjs";
+
+const siteConfig = await resolveSiteConfig();
+
+// Root locale content (Starlight's `locales.root`) lives unprefixed; only
+// non-root locales get a directory prefix under the content root.
+const localePrefixes = Object.keys(siteConfig.locales ?? {}).filter(
+  (locale) => locale !== "root",
+);
 
 const frontmatterRedirects = collectFrontmatterRedirects({
-  docsRoot: new URL("./src/content/docs", import.meta.url),
-  localePrefixes: ["da", "en"],
+  docsRoot: new URL(siteConfig.contentRoot, import.meta.url),
+  localePrefixes,
   onConflict: ({ source, existing, incoming, filePath }) => {
     console.warn(
       `[redirect-from] Skipping conflicting source '${source}' from '${filePath}'. Already mapped to '${existing}' and ignored '${incoming}'.`,
@@ -85,8 +94,8 @@ function getPdfBrowserExecutablePath() {
 }
 
 const pdfPages = collectFrontmatterPdfPages({
-  docsRoot: new URL("./src/content/docs", import.meta.url),
-  localePrefixes: ["da"],
+  docsRoot: new URL(siteConfig.contentRoot, import.meta.url),
+  localePrefixes,
 });
 
 const pdfPageSet = new Set(pdfPages.map(normalizePathname));
@@ -97,8 +106,11 @@ const hasRequiredGiscusConfig =
   Boolean(giscusClientConfig.attributes["data-repo"]);
 
 if (!hasRequiredGiscusConfig) {
-  throw new Error(
-    "Invalid Giscus configuration. Update src/config/giscus.mjs with a script URL and data-repo.",
+  // A content repo that doesn't configure Giscus simply doesn't get comments
+  // (Giscus.astro already no-ops without a data-repo) rather than failing
+  // the whole build — this theme has to work for repos that don't want it.
+  console.warn(
+    "Giscus is not configured (no data-repo). Comments will be disabled for this build.",
   );
 }
 
@@ -110,7 +122,7 @@ if (giscusEnabledByDefault) {
   );
 }
 
-if (!pdfBrowserExecutablePath) {
+if (pdfPageSet.size > 0 && !pdfBrowserExecutablePath) {
   throw new Error(
     "No PDF browser executable found. Run 'gh insitu run post-create' or 'gh insitu run prep-runner' so Chromium is installed, or set PDF_BROWSER_PATH.",
   );
@@ -147,6 +159,7 @@ const pdfIntegration =
 
 // https://astro.build/config
 export default defineConfig({
+  outDir: process.env.REMOTE_THEME_OUT_DIR || undefined,
   markdown: {
     remarkPlugins: [remarkAttrForMdx, remarkLegalClauses],
     rehypePlugins: [
@@ -174,159 +187,23 @@ export default defineConfig({
   },
   integrations: [
     starlight({
-      title: {
-        da: "Mind over Machine",
-        en: "Mind over machine",
-      },
-      favicon: "/mom-favicon.ico",
-      logo: {
-        src: "./src/assets/mom-logo.png",
-      },
+      title: siteConfig.title,
+      favicon: siteConfig.favicon,
+      logo: siteConfig.logo,
       components: {
         ContentPanel: "./src/components/overrides/ContentPanel.astro",
         Footer: "./src/components/overrides/Footer.astro",
       },
-      customCss: ["./src/styles/custom.scss", "./src/styles/legal-doc.scss"],
-      defaultLocale: "da",
-      locales: {
-        da: {
-          label: "Dansk",
-          lang: "da",
-        },
-        en: {
-          label: "English",
-          lang: "en",
-        },
-      },
-      social: [
-        {
-          icon: "github",
-          label: "GitHub",
-          href: "https://github.com/mindovermachine-dev",
-        },
-      ],
-      sidebar: [
-        {
-          label: "Vision & Mission",
-          translations: { da: "Vision & Mission" },
-          items: [
-            {
-              label: "The Manifesto",
-              translations: { da: "Manifestet" },
-              slug: "vision/manifesto",
-            },
-            {
-              label: "The Regenerative Charter",
-              translations: { da: "Det regenerative Charter" },
-              slug: "vision/charter",
-            },
-            {
-              label: "The C.R.O.W.D. Values",
-              translations: { da: "C.R.O.W.D. Værdierne" },
-              slug: "vision/crowd-values",
-            },
-          ],
-        },
-        {
-          label: "About Us",
-          translations: { da: "Om Os" },
-          items: [
-            {
-              label: "Join Us",
-              translations: { da: "Vær med" },
-              slug: "about/join",
-            },
-            {
-              label: "Contact",
-              translations: { da: "Kontakt" },
-              slug: "about/contact",
-            },
-            {
-              label: "Founder's Story",
-              translations: { da: "Founder's Story" },
-              slug: "about/founder-story",
-            },
-          ],
-        },
-        {
-          label: "Organization",
-          translations: { da: "Organisation" },
-          items: [
-            {
-              label: "The Three Pillars",
-              translations: { da: "De tre Søjler" },
-              slug: "governance/three-pillars",
-            },
-            {
-              label: "Initiative Circle",
-              translations: { da: "Initiativkredsen" },
-              slug: "governance/initiative-circle",
-            },
-            {
-              label: "Registration & Founding Documents",
-              translations: { da: "Stiftelsesdokumenter" },
-              slug: "governance/registration",
-            },
-          ],
-        },
-        {
-          label: "Personnel",
-          translations: { da: "Personale" },
-          items: [
-            {
-              label: "Director agreement",
-              translations: { da: "Direktøraftale" },
-              slug: "personnel/director-agreement",
-            },
-            {
-              label: "Employee agreement",
-              translations: { da: "Ansættelsesaftale" },
-              slug: "personnel/employee-agreement",
-            },
-            {
-              label: "Personnel Policy",
-              translations: { da: "Personalepolitik" },
-              slug: "personnel/personnel-policy",
-            },
-          ],
-        },
-        {
-          label: "Methodology",
-          translations: { da: "Metoder" },
-          items: [
-            {
-              label: "Collaboration",
-              translations: { da: "Samarbejde" },
-              slug: "methodology/collaboration",
-            },
-            {
-              label: "How We Work",
-              translations: { da: "Sådan arbejder vi" },
-              slug: "methodology/how-we-work",
-            },
-            //            {
-            //              label: "The Toyota Way",
-            //              translations: { da: "Toyota-vejen" },
-            //              slug: "methodology/toyota-way",
-            //            },
-            //            {
-            //              label: "Participatory Design",
-            //              translations: { da: "Deltagende Design" },
-            //              slug: "methodology/participatory-design",
-            //            },
-            //            {
-            //              label: "Developer Experience (DevX)",
-            //              translations: { da: "Udvikler Erfaring (DevX)" },
-            //              slug: "methodology/devx",
-            //            },
-          ],
-        },
-      ],
+      customCss: siteConfig.customCss,
+      defaultLocale: siteConfig.defaultLocale,
+      locales: siteConfig.locales,
+      social: siteConfig.social,
+      sidebar: siteConfig.sidebar,
     }),
     ...(pdfIntegration ? [pdfIntegration] : []),
   ],
   redirects: {
-    "/": "/da/",
+    ...(siteConfig.rootRedirect ? { "/": siteConfig.rootRedirect } : {}),
     ...frontmatterRedirects,
   },
 });

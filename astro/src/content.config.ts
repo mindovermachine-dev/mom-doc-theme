@@ -2,10 +2,12 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
+import { resolveSiteConfig } from "./config/site-config.mjs";
 
-// Spike: point the docs collection at an external content root when set,
-// so content never has to live inside this theme's own src/ tree.
-const contentRoot = process.env.REMOTE_THEME_CONTENT_ROOT ?? "./src/content/docs";
+// remote-astro-theme injects a content root (a symlink into the calling
+// content repo's docs/content) via the generated site config; falls back to
+// this theme's own bundled demo content when run standalone.
+const { contentRoot } = await resolveSiteConfig();
 
 export const collections = {
   docs: defineCollection({

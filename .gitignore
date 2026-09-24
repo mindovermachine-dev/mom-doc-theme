@@ -27,3 +27,8 @@ astro/public/version.txt
 # General
 /tmp
 /temp
+
+# remote-astro-theme generated config + symlinked content, when this theme
+# is driven by remote-astro-theme rather than run standalone
+astro/.remote-theme/
+
