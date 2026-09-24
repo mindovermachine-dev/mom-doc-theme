@@ -1,0 +1,165 @@
+---
+const { starlightRoute } = Astro.locals;
+const isLegalDoc = starlightRoute.entry.data.docLayout === "legalDoc";
+---
+
+<div class:list={["content-panel", { "content-panel--legal-doc": isLegalDoc }]}>
+  <div class="sl-container">
+    {
+      isLegalDoc && (
+        <div class="contract-toolbar" data-contract-toolbar>
+          <button type="button" class="contract-toolbar__print" data-contract-print>
+            Print / Gem som PDF
+          </button>
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</div>
+
+{
+  isLegalDoc && (
+    <script>
+      const MAX_VALUE_LENGTH = 300;
+
+      const parseBoolean = (value: string) => {
+        const normalized = value.toLowerCase();
+        if (["1", "true", "yes", "ja"].includes(normalized)) {
+          return true;
+        }
+        if (["0", "false", "no", "nej"].includes(normalized)) {
+          return false;
+        }
+        return null;
+      };
+
+      const getParamValue = (params: URLSearchParams, path: string) => {
+        const candidates = [`o.${path}`, `overload.${path}`, path];
+        for (const key of candidates) {
+          const value = params.get(key);
+          if (value !== null && value.length > 0) {
+            return value.slice(0, MAX_VALUE_LENGTH);
+          }
+        }
+        return null;
+      };
+
+      const applyOverloads = () => {
+        const params = new URLSearchParams(window.location.search);
+        document.querySelectorAll("[data-overload]").forEach((element) => {
+          const path = element.getAttribute("data-overload");
+          if (!path) {
+            return;
+          }
+
+          const rawValue = getParamValue(params, path);
+          if (rawValue === null) {
+            return;
+          }
+
+          const format = element.getAttribute("data-overload-format");
+          if (format === "currency-dkk") {
+            const number = Number(rawValue.replace(/\./g, "").replace(",", "."));
+            if (!Number.isFinite(number)) {
+              return;
+            }
+            element.textContent = new Intl.NumberFormat("da-DK", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(number);
+            return;
+          }
+
+          if (format === "boolean-text") {
+            const booleanValue = parseBoolean(rawValue);
+            if (booleanValue === null) {
+              return;
+            }
+            const trueText = element.getAttribute("data-overload-true") ?? "Ja";
+            const falseText = element.getAttribute("data-overload-false") ?? "Nej";
+            element.textContent = booleanValue ? trueText : falseText;
+            return;
+          }
+
+          element.textContent = rawValue;
+        });
+      };
+
+      const setupPrintButton = () => {
+        const toolbars = Array.from(
+          document.querySelectorAll<HTMLElement>("[data-contract-toolbar]")
+        );
+
+        toolbars.forEach((toolbar, index) => {
+          if (index > 0) {
+            toolbar.remove();
+          }
+        });
+
+        const button = document.querySelector<HTMLButtonElement>(
+          "[data-contract-print]"
+        );
+        if (!button || button.dataset.bound === "true") {
+          return;
+        }
+
+        button.dataset.bound = "true";
+        button.addEventListener("click", () => window.print());
+      };
+
+      applyOverloads();
+      setupPrintButton();
+    </script>
+  )
+}
+
+<style>
+  @layer starlight.core {
+    .content-panel {
+      padding: 1.5rem var(--sl-content-pad-x);
+    }
+    .content-panel + .content-panel {
+      border-top: 1px solid var(--sl-color-hairline);
+    }
+    .sl-container {
+      max-width: var(--sl-content-width);
+    }
+
+    .sl-container > :global(* + *) {
+      margin-top: 1.5rem;
+    }
+
+    .contract-toolbar {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .contract-toolbar__print {
+      border: 1px solid var(--sl-color-hairline);
+      border-radius: 0.5rem;
+      background: var(--sl-color-bg);
+      color: var(--sl-color-white);
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+    }
+
+    .contract-toolbar__print:hover {
+      border-color: var(--sl-color-text-accent);
+      color: var(--sl-color-text-accent);
+    }
+
+    @media (min-width: 72rem) {
+      .sl-container {
+        margin-inline: var(--sl-content-margin-inline, auto);
+      }
+    }
+
+    @media print {
+      .contract-toolbar {
+        display: none;
+      }
+    }
+  }
+</style>

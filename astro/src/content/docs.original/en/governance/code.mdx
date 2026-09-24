@@ -1,0 +1,72 @@
+---
+title: Three pillars
+description: Governance, Security & Quality Plan for the OSS Steward role
+docLayout: legalDoc
+---
+
+<kicker>"_{frontmatter.description}_"</kicker>
+
+**Organization**: Mind over Machine, The Regenerative Software Foundation (MoM)<br/>
+**Legal Framework**: Non-profit Open Source Software (OSS) Steward under Article 24 of the EU Cyber Resilience Act (Regulation EU 2024/2847)
+
+## Mission
+
+The MoM Foundation provides unbiased, vendor-neutral stewardship for open-source software (FOSS) projects originating from academic, laboratory, and corporate collaborations.
+By operating strictly as an OSS Steward under Article 24 of the EU Cyber Resilience Act (CRA), MoM ensures that non-commercial maintainers and foundations remain shielded from manufacturer liability, while enforcing elite supply chain security, quality assurance, and traceability standards. Any commercial entity (e.g., consultancies or enterprise clients) packaging or selling MoM projects assumes full manufacturer liability, supported by MoM’s automated SBOMs, lockfile integrity, and audit trails.
+
+## Core Engineering Promises & Standards
+
+All repositories steered by MoM adhere to a unified, predictable operational standard across all product lines:
+
+**Semantic Versioning (SemVer):** Strict adherence to MAJOR.MINOR.PATCH for all formal releases.
+
+**Containerized Development:** Development environments are codified using Dev Containers (.devcontainer) to guarantee environment symmetry across human and AI developers.
+
+**Containerized Shift-Left Pipelines:** CI/CD tasks are fully executable directly inside local development containers before pushing code.
+
+**Trunk-Based Development:** Support for direct commits to main by trusted maintainers. Pull Requests (PRs) are supported and welcomed, but optional for internal core teams.
+
+**Non-Blocking Reviews:** Peer code reviews are required for formal SemVer releases, but non-blocking for daily merges to main.
+
+**Full Traceability & AI Provenance:** Every commit on main must map to a tracked issue on the upstream Kanban board. All generative AI contributions must include structured commit trailers and documentation of prompt/chat logs.
+
+**Agentic AI Readiness:** Codebases are structured with rich, actionable context files (.cursorrules, AGENT.md, structured CLI schemas) to enable reliable AI agent interaction.
+
+**Cryptographic Signing:** Cryptographic signatures (GPG or SSH keys) are mandatory for all commits pushed to main.
+
+**Detroit-Style Testing:** Strong preference for classical/stateful ("Detroit school") unit and integration testing over mock-heavy ("London school") testing. This maximizes test stability and provides unambiguous feedback to both human and AI contributors.
+
+**Managed Test Fixtures:** All test data required to run the suite is version-controlled, stable, and locally available inside the Dev Container.
+
+**Highly Componentized Architecture:** Codebases are modular and should strive for feature-completeness by design to prevent "tokens-run-wild" budgets when processed by LLMs.
+
+**Open Project Management:** Managed transparently via upstream Kanban roadmaps and downstream work-in-progress (WIP) tracking boards.
+
+**Dedicated Community Channels:** GitHub Discussions serves as the primary end-user voice channel paired with active issue tracking.
+
+**Modern Package Distribution:** Native support for modern package managers (e.g., uv for Python, npm/pnpm for JS/TS).
+
+## Organizational Structure & Maturity Taxonomy
+
+MoM maintains all repositories under a single unified GitHub organization: mindovermachine-dev. Centralizing repositories simplifies security configuration, team permissions, and cross-project governance.
+
+### Maturity Classification Framework
+
+To prevent market confusion between experimental code and production-grade tools, every repository is categorized using GitHub Topics and README.md badges:
+
+| Maturity Stage                | Topic Tag           | Quality & Security SLA                                                   | CRA Status                                  |
+| ----------------------------- | ------------------- | ------------------------------------------------------------------------ | ------------------------------------------- |
+| **Laboratory / Experimental** | `status-lab`        | Internal experiments. Minimal CI, floating versions allowed.             | **Exempt.** Non-production R&D code.        |
+| **Incubating**                | `status-incubating` | Active development. Dev Containers and tests enforced.                   | Preparing for production compliance.        |
+| **Graduated / Flagship**      | `status-graduated`  | Full MoM standards enforced: SemVer, SECURITY.md, SBOMs, signed commits. | **CRA Article 24 Compliant** (OSS Steward). |
+
+### Laboratory Disclaimer
+All status-lab repositories must include the following notice in their README.md:
+
+> _"This repository is an experimental MoM Laboratory exercise. It is provided 'AS IS' for research and development purposes and is not certified for production or commercial deployment under EU Cyber Resilience Act standards."_
+
+## Governance, Access Control & Meritocracy
+
+MoM operates on _sociocratic_ and _meritocratic_ principles. Governance is decoupled from corporate employment; maintainer access is granted to individual GitHub accounts based on active contribution and demonstrated technical judgment.
+
+

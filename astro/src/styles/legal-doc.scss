@@ -1,0 +1,82 @@
+.content-panel--legal-doc .table-no-border,
+.content-panel--legal-doc .table-no-border th,
+.content-panel--legal-doc .table-no-border td {
+  border: none;
+}
+
+/* Auto-number legal sections (H2) as 1, 2, 3... */
+.content-panel--legal-doc .sl-markdown-content {
+  counter-reset: legal-section;
+}
+
+.content-panel--legal-doc .sl-markdown-content > .sl-heading-wrapper.level-h2 {
+  counter-increment: legal-section;
+  counter-reset: legal-clause;
+}
+
+.content-panel--legal-doc
+  .sl-markdown-content
+  > .sl-heading-wrapper.level-h2
+  > h2::before {
+  content: counter(legal-section) " ";
+}
+
+/* Auto-number plain paragraphs inside legal sections as 1.1, 1.2, 2.1 ... */
+.content-panel--legal-doc .sl-markdown-content > p.legal-clause {
+  counter-increment: legal-clause;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.content-panel--legal-doc .sl-markdown-content > p.legal-clause::before {
+  content: counter(legal-section) "." counter(legal-clause) " ";
+  font-weight: 700;
+}
+
+/* Optional clause list styling for structured legal clauses under each section. */
+.content-panel--legal-doc .sl-markdown-content ol.legal-clauses {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  counter-reset: legal-clause;
+}
+
+.content-panel--legal-doc .sl-markdown-content ol.legal-clauses > li {
+  counter-increment: legal-clause;
+}
+
+.content-panel--legal-doc .sl-markdown-content ol.legal-clauses > li::before {
+  content: counter(legal-section) "." counter(legal-clause) " ";
+  font-weight: 700;
+}
+
+.content-panel--legal-doc
+  .sl-markdown-content
+  ol.legal-clauses
+  > li
+  > ol.legal-subclauses {
+  list-style: none;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+  counter-reset: legal-subclause;
+}
+
+.content-panel--legal-doc
+  .sl-markdown-content
+  ol.legal-clauses
+  > li
+  > ol.legal-subclauses
+  > li {
+  counter-increment: legal-subclause;
+}
+
+.content-panel--legal-doc
+  .sl-markdown-content
+  ol.legal-clauses
+  > li
+  > ol.legal-subclauses
+  > li::before {
+  content: counter(legal-section) "." counter(legal-clause) "."
+    counter(legal-subclause) " ";
+  font-weight: 700;
+}

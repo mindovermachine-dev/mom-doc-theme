@@ -1,0 +1,221 @@
+---
+title: Ansættelsesaftale
+description: Ansættelseskontrakt for medarbejder under funktionærloven
+redirectFrom: /da/governance/employee-agreement/
+docLayout: legalDoc
+overload:
+  date: "[date]"
+  place: København
+  organization:
+    name: Mind over Machine, fonden til fremme af regenerativ softwareudvikling
+    referal: Fonden
+    cvr: "46659287"
+    address:
+      street: Ernie Wilkins Vej 19, 4-1
+      areacode: 2450 København SV
+  employee:
+    name: "[employee.name]"
+    referal: Medarbejderen
+    id: "[employee.cpr]"
+    address:
+      street: "[employee.address.street]"
+      areacode: "[employee.address.areacode]"
+  employment:
+    title: Medarbejder
+    startDate: "[employment.startDate]"
+    weeklyHours: 37
+  compensation:
+    salaryAnnual: 0
+    pension:
+      employer: 12%
+      employee: 6%
+    healthInsurance: true
+---
+
+Ansættelsesaftale i <span data-overload="organization.name">{frontmatter.overload.organization.name}</span><br/>
+
+Denne ansættelsesaftale er d. <span data-overload="date">{frontmatter.overload.date}</span> indgået mellem:
+
+<table
+  class="table-no-border"
+  style="width: 100%; table-layout: fixed; border-collapse: collapse;"
+>
+  <colgroup>
+    <col style="width: 50%;" />
+    <col style="width: 50%;" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th align="left">
+        <span data-overload="organization.referal">
+          {frontmatter.overload.organization.referal}
+        </span>
+      </th>
+      <th align="left">
+        <span data-overload="employee.referal">
+          {frontmatter.overload.employee.referal}
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span data-overload="organization.name">
+          {frontmatter.overload.organization.name}
+        </span>
+        <br />
+        <span data-overload="organization.address.street">
+          {frontmatter.overload.organization.address.street}
+        </span>
+        <br />
+        <span data-overload="organization.address.areacode">
+          {frontmatter.overload.organization.address.areacode}
+        </span>
+        <br />
+        CVR:{" "}
+        <span data-overload="organization.cvr">
+          {frontmatter.overload.organization.cvr}
+        </span>
+      </td>
+      <td>
+        <span data-overload="employee.name">
+          {frontmatter.overload.employee.name}
+        </span>
+        <br />
+        <span data-overload="employee.address.street">
+          {frontmatter.overload.employee.address.street}
+        </span>
+        <br />
+        <span data-overload="employee.address.areacode">
+          {frontmatter.overload.employee.address.areacode}
+        </span>
+        <br />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Stilling, tiltrædelse og arbejdstid
+
+Medarbejderen ansættes som <span data-overload="employment.title">{frontmatter.overload.employment.title}</span> med tiltrædelse den <span data-overload="employment.startDate">{frontmatter.overload.employment.startDate}</span>.
+
+Arbejdstiden er <span data-overload="employment.weeklyHours">{frontmatter.overload.employment.weeklyHours}</span> timer pr. uge i gennemsnit.
+
+Arbejdsstedet er fondens adresse, med mulighed for fjernarbejde efter nærmere aftale med nærmeste leder.
+
+## Løn, pension og sundhedsforsikring
+
+Den årlige løn udgør ved ansættelsestidspunktet <span data-overload="compensation.salaryAnnual" data-overload-format="currency-dkk">{new Intl.NumberFormat('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(frontmatter.overload.compensation.salaryAnnual)}</span> kr. Lønnen udbetales månedsvis bagud og senest sidste hverdag i måneden.
+
+Fonden indbetaler pension svarende til <span data-overload="compensation.pension.employer">{frontmatter.overload.compensation.pension.employer}</span>, og medarbejderens eget pensionsbidrag udgør <span data-overload="compensation.pension.employee">{frontmatter.overload.compensation.pension.employee}</span>.
+
+<p
+  class="legal-clause"
+  data-overload="compensation.healthInsurance"
+  data-overload-format="boolean-text"
+  data-overload-true="Fonden stiller sundhedsforsikring til rådighed for medarbejderen, på de vilkår som er omtalt i fondens personalepolitik"
+  data-overload-false="Der er ikke aftalt sundhedsforsikring i ansættelsesperioden."
+>
+  {frontmatter.overload.compensation.healthInsurance
+    ? "Fonden stiller sundhedsforsikring til rådighed for medarbejderen, på de vilkår som er omtalt i fondens personalepolitik."
+    : "Der er ikke aftalt sundhedsforsikring i ansættelsesperioden."}
+</p>
+
+Lønnen optages til forhandling første gang 12 måneder efter ansættelsens begyndelse og derefter én gang årligt.
+
+## Ferie, fravær og barsel
+
+Ansættelsesforholdet er omfattet af funktionærloven og ferieloven.
+
+Ferie, sygdom, barns sygdom, barsel og øvrigt fravær håndteres efter den til enhver tid gældende lovgivning og fondens [personalepolitik](/da/personnel/personnel-policy).
+
+## Tavshedspligt
+
+Medarbejderen har tavshedspligt om fortrolige oplysninger, som medarbejderen bliver bekendt med i ansættelsen.
+
+Tavshedspligten gælder også efter fratræden, dog ikke for oplysninger som lovligt er offentligt tilgængelige eller som medarbejderen er forpligtet til at videregive efter lov.
+
+## Arbejdsresultater, open source og rettigheder
+
+Arbejdsresultater, som medarbejderen udvikler som led i ansættelsen, herunder software, dokumentation og øvrigt materiale, tilkommer fonden i overensstemmelse med ophavsretsloven, lov om arbejdstageres opfindelser og øvrige ufravigelige regler i dansk ret.
+
+Når fonden offentliggør materiale under en fri og åben licens, gælder licensens rettigheder for de offentliggjorte versioner og kan ikke efterfølgende tilbagekaldes for disse versioner.
+
+Fonden kan beslutte anden licens eller lukning for fremtidige, endnu ikke offentliggjorte versioner.
+
+Ved fratræden bevarer medarbejderen adgang til offentligt tilgængelige Open Source og CopyLeft versioner og kan anvende disse i overensstemmelse med den pågældende licens.
+
+## Opsigelse
+
+Opsigelse sker i overensstemmelse med funktionærlovens regler, medmindre andet skriftligt aftales inden for lovens rammer.
+
+## Tvister
+
+Tvister søges først løst i dialog mellem parterne. Kan tvisten ikke løses, afgøres sagen ved de almindelige domstole med Københavns Byret som værneting.
+
+## Underskrifter
+
+<table
+  class="table-no-border"
+  style="width: 100%; table-layout: fixed; border-collapse: collapse;"
+>
+  <colgroup>
+    <col style="width: 47%;" />
+    <col style="width: 6%;" />
+    <col style="width: 47%;" />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        <span data-overload="place">{frontmatter.overload.place}</span>,{" "}
+        <span data-overload="date">{frontmatter.overload.date}</span>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+        <span data-overload="place">{frontmatter.overload.place}</span>,{" "}
+        <span data-overload="date">{frontmatter.overload.date}</span>
+      </td>
+    </tr>
+    <tr style="height: 4em;">
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <b>
+          <span data-overload="organization.referal">
+            {frontmatter.overload.organization.referal}
+          </span>
+        </b>
+        <br />
+        Direktør
+      </td>
+      <td>&nbsp;</td>
+      <td>
+        <b>
+          <span data-overload="employee.referal">
+            {frontmatter.overload.employee.referal}
+          </span>
+        </b>
+      </td>
+    </tr>
+    <tr style="height: 4em;">
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <b>
+          <span data-overload="organization.referal">
+            {frontmatter.overload.organization.referal}
+          </span>
+        </b>
+        <br />
+        Bestyrelsesformand
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>

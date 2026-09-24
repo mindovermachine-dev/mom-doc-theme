@@ -1,0 +1,67 @@
+---
+import { giscusClientConfig } from "../config/giscus.mjs";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const giscusConfigJson = JSON.stringify(giscusClientConfig.attributes);
+---
+
+<section class="giscus-container">
+  <div
+    class="giscus-slot"
+    data-giscus-slot
+    data-lang={lang}
+    data-giscus-config={giscusConfigJson}
+    data-giscus-src={giscusClientConfig.src}
+  >
+  </div>
+  <script is:inline>
+    (() => {
+      if (navigator.webdriver) {
+        return;
+      }
+
+      const slot = document.querySelector("[data-giscus-slot]");
+      if (!slot || slot.querySelector("script")) {
+        return;
+      }
+
+      const language = slot.dataset.lang || "en";
+      const src = slot.dataset.giscusSrc || "";
+      const rawConfig = slot.dataset.giscusConfig || "{}";
+
+      let config = {};
+
+      try {
+        config = JSON.parse(rawConfig);
+      } catch {
+        return;
+      }
+
+      if (!src) {
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = src;
+      for (const [key, value] of Object.entries(config)) {
+        script.setAttribute(key, String(value));
+      }
+      script.setAttribute("data-lang", language);
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+      slot.append(script);
+    })();
+  </script>
+</section>
+
+<style>
+  .giscus-container {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+</style>

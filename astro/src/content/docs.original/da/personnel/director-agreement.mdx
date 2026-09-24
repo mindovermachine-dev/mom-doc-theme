@@ -1,0 +1,313 @@
+---
+title: Direktøraftale
+redirectFrom: /da/governance/director-agreement/
+description: Ansættelseskontrakt i indflydende stilling, uden for funktionærloven
+docLayout: legalDoc
+overload:
+  semver: 1.0.0
+  date: "[date]"
+  place: København
+  organization:
+    name: Mind Over Machine, Fonden for fremme af regenerativ software
+    referal: Fonden
+    cvr: "46659287"
+    address:
+      street: ℅ Lars Kruse, Ernie Wilkins Vej 19, 4-1
+      areacode: 2450 København SV
+  director:
+    name: "[director.name]"
+    referal: Direktøren
+    cpr: "[director.cpr]"
+    address:
+      street: "[director.address.street]"
+      areacode: "[director.address.areacode]"
+  employment:
+    title: Administrerende Direktør (Chief Executive Officer/CEO)
+    startDate: "[employment.startDate]"
+    weeklyHours: 37
+  compensation:
+    salaryAnnual: 0 #'[compensation.salaryAnnual]'
+    pension:
+      employer: 12%
+      employee: 6%
+    healthInsurance: true
+---
+
+Direktør i <span data-overload="organization.name">{frontmatter.overload.organization.name}</span><br/>
+
+Denne direktøraftale baseret på version {frontmatter.overload.semver} er d. <span data-overload="date">{frontmatter.overload.date}</span> indgået mellem:
+
+<table
+  class="table-no-border"
+  style="width: 100%; table-layout: fixed; border-collapse: collapse;"
+>
+  <colgroup>
+    <col style="width: 50%;" />
+    <col style="width: 50%;" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th align="left">
+        <span data-overload="organization.referal">
+          {frontmatter.overload.organization.referal}
+        </span>
+      </th>
+      <th align="left">
+        <span data-overload="director.referal">
+          {frontmatter.overload.director.referal}
+        </span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span data-overload="organization.name">
+          {frontmatter.overload.organization.name}
+        </span>
+        <br />
+        <span data-overload="organization.address.street">
+          {frontmatter.overload.organization.address.street}
+        </span>
+        <br />
+        <span data-overload="organization.address.areacode">
+          {frontmatter.overload.organization.address.areacode}
+        </span>
+        <br />
+        CVR: <span data-overload="organization.cvr">{frontmatter.overload.organization.cvr}</span>
+
+      </td>
+      <td>
+        <span data-overload="director.name">
+          {frontmatter.overload.director.name}
+        </span>
+        <br />
+        <span data-overload="director.address.street">
+          {frontmatter.overload.director.address.street}
+        </span>
+        <br />
+        <span data-overload="director.address.areacode">
+          {frontmatter.overload.director.address.areacode}
+        </span>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+## Tiltrædelsesdato og arbejdssted
+
+Direktøren ansættes med titel af <span data-overload="employment.title">{frontmatter.overload.employment.title}</span> og tiltræder stillingen med virkning fra <span data-overload="employment.startDate">{frontmatter.overload.employment.startDate}</span>.
+
+Arbejdstiden er <span data-overload="employment.weeklyHours">{frontmatter.overload.employment.weeklyHours}</span> timer pr. uge i gennemsnit.
+
+Arbejdsstedet er fondens adresse, med mulighed for fjernarbejde efter nærmere aftale med Bestyrelsen.
+
+## Ansvar og kompetencer
+
+Direktøren varetager under ansvar overfor og med reference direkte til fondens bestyrelse (herefter _bestyrelsen_) den daglige ledelse af fonden.
+
+Den daglige ledelse skal ske under iagttagelse af gældende lovgivning, fondens vedtægter og i øvrigt efter de retningslinjer, der måtte blive anvist af bestyrelsen. Den daglige ledelse skal også ske i respekt for fondens sociokratiske beslutningsprincipper og flade organisationsstruktur.
+
+Den daglige ledelse omfatter alle sædvanlige forretningsmæssige og organisatoriske dispositioner i forbindelse med fondens drift. Direktøren ansætter og afskediger fondens personale og fastsætter personalets arbejdsområder og beføjelser.
+
+Det påhviler direktøren at holde bestyrelsen underrettet om alle forhold vedrørende fonden, som må antages at have væsentlig interesse for bestyrelsen eller fondens interessenter. Rapporteringen skal ske i overensstemmelse med den rapporteringsramme og det årshjul, som bestyrelsen har fastlagt i forretningsordenen.
+
+Direktøren har _ex officio_ ret til at være til stede og udtale sig ved bestyrelsens møder, medmindre bestyrelsen i det enkelte tilfælde træffer anden beslutning. Direktøren har ikke stemmeret ved bestyrelsen.
+
+Bestyrelsen har pligt til at informere Direktøren om alle væsentlige forhold.
+
+Direktøren anmeldes til Erhvervsstyrelsen.
+
+## Løn og lønforhandling
+
+Den årlige løn udgør ved ansættelsestidspunktet <span data-overload="compensation.salaryAnnual" data-overload-format="currency-dkk">{new Intl.NumberFormat('da-DK', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(frontmatter.overload.compensation.salaryAnnual)}</span> kr. Lønnen udbetales månedsvis bagud og betales senest den sidste hverdag i måneden.
+
+Det tilstræbes over tid, at lønnen udvikler sig mod et markedssvarende niveau for sammenlignelige stillinger under hensyn til fondens økonomiske bæreevne og bestyrelsens løbende vurdering.
+
+Lønnen optages til forhandling med bestyrelsesformanden én gang årligt i oktober måned med virkning fra oktober måned, første gang i oktober måned 2026\.
+
+## Pension og sundhedsforsikring
+
+Fonden indbetaler pension af samtlige løndele, jf. afsnittet om løn og lønforhandling. Pensionsbidraget udgør <span data-overload="compensation.pension.employer">{frontmatter.overload.compensation.pension.employer}</span> fra fonden og <span data-overload="compensation.pension.employee">{frontmatter.overload.compensation.pension.employee}</span> fra direktøren.
+
+<p
+  class="legal-clause"
+  data-overload="compensation.healthInsurance"
+  data-overload-format="boolean-text"
+  data-overload-true="Fonden stiller sundhedsforsikring til rådighed for direktøren, på de vilkår som er omtalt i fondens personalepolitik."
+  data-overload-false="Der er ikke aftalt sundhedsforsikring i ansættelsesperioden."
+>
+  {frontmatter.overload.compensation.healthInsurance
+    ? "Fonden stiller sundhedsforsikring til rådighed for direktøren, på de vilkår som er omtalt i fondens personalepolitik."
+    : "Der er ikke aftalt sundhedsforsikring i ansættelsesperioden."}
+</p>
+
+## Arbejdsomfang, anden beskæftigelse og interessekonflikter
+
+Direktøren er forpligtet til at anvende sin fulde arbejdskraft og alle sine kundskaber i fondens tjeneste.
+
+Arbejdstiden er <span data-overload="employment.weeklyHours">{frontmatter.overload.employment.weeklyHours}</span> timer pr. uge i gennemsnit.
+
+Direktøren er berettiget til at fortsætte i nuværende bestyrelses- og tillidshverv, ligesom direktøren er berettiget til at påtage sig yderligere tillids- og bestyrelseshverv, såvel lønnet som ulønnet, så længe sådanne hverv ikke varetages i organisationer eller virksomheder, hvis virke er i direkte eller indirekte modstrid med fondens formål og aktiviteter. Eventuelle honorarer tilfalder direktøren. Direktøren skal give bestyrelsen meddelelse om nye bestyrelses- og tillidshverv og have bestyrelsens samtykke, før sådanne hverv påbegyndes.
+
+Så længe direktøren oppebærer løn i fonden, skal direktøren loyalt varetage fondens interesser og undgå aktiviteter, der skaber væsentlige interessekonflikter. Hvis der opstår eller forventes at opstå en potentiel interessekonflikt, skal direktøren uden unødigt ophold orientere bestyrelsen, så forholdet kan håndteres i dialog og med en klar aftale.
+
+Så længe direktøren oppebærer løn i fonden, må direktøren ikke aktivt medvirke til at rekruttere fondens ansatte til anden ansættelse i organisationer eller virksomheder, som direktøren har en væsentlig relation til, medmindre andet er aftalt med bestyrelsen.
+
+## Ferie og fridage
+
+Direktøren er ikke omfattet af ferieloven.
+
+Direktøren har ret til 6 ugers ferie pr. påbegyndt kalenderår. Den sjette ferieuge er aftalebaseret. Direktøren modtager sædvanlig løn og pension under ferie. Direktøren er berettiget til fuld løn under ferie fra tiltrædelsestidspunktet.
+
+Direktøren bestemmer tidspunktet for feriens afholdelse under hensyntagen til Fondens interesser og underretter bestyrelsesformanden herom.
+
+Direktøren har ret til et årligt ferietillæg på 1 % af den ferieberettigende løn optjent i det forudgående kalenderår. Ved ferieberettigende løn forstås den faste kontante løn, mens pensionsbidrag, udgiftsgodtgørelser og eventuelle engangsvederlag ikke indgår, medmindre andet aftales skriftligt. Ferietillægget udbetales hvert år sammen med lønnen for oktober måned.
+
+Efter aftale med bestyrelsesformanden kan det aftales, at der overføres op til én uges ferie til det kommende ferieår.
+
+Ved fratræden opgøres optjent og ikke-afholdt ferie forholdsmæssigt. Ikke-afholdt ferie søges som udgangspunkt afholdt i opsigelsesperioden under hensyntagen til fondens drift og parternes planlægning. Ferie, der ikke kan afholdes inden fratræden, udbetales kontant ved sidste lønudbetaling. Dette gælder også den aftalebaserede sjette ferieuge.
+
+## Graviditet, barsel og adoption
+
+Direktørens vilkår ved graviditet, barsel og adoption følger fondens til enhver tid gældende [personalepolitik](/da/personnel/personnel-policy).
+
+## Sygdom og barns sygdom
+
+Direktørens vilkår ved sygdom og barns sygdom følger fondens til enhver tid gældende [personalepolitik](/da/personnel/personnel-policy).
+
+## Rejser og repræsentation
+
+Arbejdsrelaterede rejse- og repræsentationsudgifter håndteres efter fondens til enhver tid gældende [personalepolitik](/da/personnel/personnel-policy).
+
+## Opfindelser og åbne rettigheder
+
+Arbejdsresultater, herunder software, dokumentation, metoder, modeller og øvrigt materiale, som direktøren udvikler som led i arbejdet for fonden, skal som udgangspunkt offentliggøres og vedligeholdes under en fri og åben licens, herunder open source- eller copyleft-licens, i overensstemmelse med fondens formål og bestyrelsens retningslinjer.
+
+De økonomiske rettigheder til arbejdsresultater, som udvikles som led i arbejdet for fonden, tilkommer fonden i det omfang, det følger af gældende ret, dog således at offentliggjorte versioner fortsat er reguleret af den licens, hvorunder de er udgivet. Dette gælder også tilhørende dokumentation, kildekode, designmateriale, datastrukturer og andet materiale, der er udviklet særligt til fondens virke, med respekt for tredjemands rettigheder og licensvilkår.
+
+Bestyrelsen kan kun beslutte, at materiale helt eller delvist undtages fra offentliggørelse, hvis der foreligger en saglig begrundelse, herunder hensyn til persondata, fortrolige oplysninger, sikkerhed, tredjemands rettigheder eller væsentlige driftsmæssige forhold.
+
+Når materiale er offentliggjort under en fri og åben licens, anerkender parterne, at de rettigheder, der er givet efter den pågældende licens for allerede offentliggjorte versioner, ikke efterfølgende kan tilbagekaldes.
+
+Ved fratræden bevarer direktøren som minimum adgang til offentligt tilgængeligt materiale, som er offentliggjort under en sådan licens, og direktøren kan beholde og anvende egne lovligt erhvervede kopier i det omfang, det følger af den anvendte licens, herunder til læsning, dokumentation, videreudvikling og forking.
+
+Fonden kan ved fratræden lukke adgang til interne systemer, private repositories, upubliceret materiale og andre ikke-offentlige samarbejdsrum. For projekter, som fortsat drives offentligt af fonden, tilstræber parterne en ordning, hvor direktøren kan bevare læseadgang til repositoryhistorik og øvrigt offentligt projektmateriale, medmindre særlige hensyn taler imod.
+
+## Opsigelse
+
+Nærværende direktørkontrakt kan opsiges af bestyrelsen med varsel til udgangen af en måned efter følgende anciennitetstrappe:
+
+- 3 måneder i de første 12 måneders ansættelse.
+- 4 måneder efter 12 måneders ansættelse.
+- 5 måneder efter 3 års ansættelse.
+- 6 måneder efter 6 års ansættelse.
+
+Direktøren kan opsige direktørkontrakten med 3 måneders varsel til udgangen af en måned.
+
+Ved opsigelse fra bestyrelsen skal der foreligge en skriftlig begrundelse, og bestyrelsen skal forudgående have gennemført en dialog med direktøren om baggrunden og mulighederne for en fælles løsning.
+
+Hvis bestyrelsen opsiger direktøren uden, at der foreligger væsentlig misligholdelse fra direktørens side, modtager direktøren ud over løn i opsigelsesperioden en fratrædelsesgodtgørelse svarende til 3 måneders løn. Efter 3 års ansættelse udgør godtgørelsen 4 måneders løn, og efter 6 års ansættelse udgør godtgørelsen 6 måneders løn.
+
+Parterne kan som alternativ indgå en skriftlig fratrædelsesaftale med gensidigt aftalte vilkår om fratrædelsestidspunkt, eventuel fritstilling, kommunikation og økonomiske forhold.
+
+Bestyrelsen kan i opsigelsesperioden beslutte at fritstille direktøren helt eller delvist, hvis det findes hensigtsmæssigt af hensyn til fondens drift, samarbejde eller betryggende overdragelse af opgaver. Under fritstilling bevarer direktøren løn og øvrige aftalte løbende ydelser i fritstillingsperioden, herunder eventuelle ydelser efter personalepolitikken, medmindre andet følger af en skriftlig fratrædelsesaftale.
+
+I opsigelsesperioden skal direktøren loyalt medvirke til overdragelse af opgaver, viden, relationer, dokumentation, adgange og igangværende processer. Parterne skal så tidligt som muligt aftale en praktisk plan for overdragelse, kommunikation, aflevering af udstyr og deaktivering eller ændring af adgange.
+
+Ved Direktørens opsigelse er Fonden forpligtet til sammen med Direktøren at afsøge mulighederne for en fælles pressemeddelelse til brug for orientering af Fondens medarbejdere, omgivelser mv.
+
+## Tavshedspligt
+
+Direktøren har tavshedspligt med hensyn til fortrolige oplysninger, som direktøren bliver bekendt med i forbindelse med udførelsen af sit arbejde for fonden. Ved fortrolige oplysninger forstås oplysninger, som ikke er offentligt tilgængelige, og som vedrører fondens interne forhold, økonomi, persondata, sikkerhed, samarbejdspartnere, ansættelsesforhold eller andre forhold, som efter deres karakter bør behandles fortroligt.
+
+Tavshedspligten gælder ikke oplysninger, som er eller bliver lovligt offentligt tilgængelige, oplysninger som fonden selv har offentliggjort under en fri og åben licens eller på anden måde gjort offentlige, eller oplysninger som direktøren er forpligtet til at videregive efter lov, påbud fra myndighed eller som led i lovlig whistleblowing.
+
+Tavshedspligten gælder også efter direktørens fratræden.
+
+Når direktøren fratræder sin stilling, skal alt ikke-offentligt materiale, der tilhører fonden, afleveres tilbage til fonden eller slettes efter fondens anvisning. Dette gælder tilsvarende kopier af sådant materiale, dog ikke materiale, som direktøren lovligt kan beholde i medfør af en anvendt fri og åben licens eller efter skriftlig aftale med bestyrelsen.
+
+Når direktøren fratræder sin stilling, påhviler det direktøren at undlade at logge ind på fondens IT-systemer og -platforme, uagtet at direktørens konti og passwords endnu ikke måtte være deaktiveret eller ændret. Undtagelser herfor skal være skriftligt aftalt med bestyrelsen.
+
+## Tvister
+
+Enhver tvist, som måtte opstå i forbindelse med denne direktøraftale, og som ikke kan løses gennem mediation eller forhandling, skal afgøres af de almindelige domstole.
+
+Som eneste rette værneting er aftalt: Københavns Byret.
+
+## Funktionærlov og ferielov
+
+Parterne er enige om, at funktionærloven og ferieloven som udgangspunkt ikke finder anvendelse på ansættelsesforholdet, i det omfang ufravigelig lovgivning ikke bestemmer andet.
+
+## Likviditetsudfordringer
+
+Ved midlertidige likviditetsudfordringer skal parterne som første skridt søge en frivillig, skriftlig og tidsafgrænset løsning om ansættelsesvilkårene.
+
+Kan en sådan løsning ikke opnås, håndteres situationen efter kontraktens øvrige bestemmelser og de til enhver tid gældende insolvensretlige regler.
+
+## Underskrifter
+
+<table
+  class="table-no-border"
+  style="width: 100%; table-layout: fixed; border-collapse: collapse;"
+>
+  <colgroup>
+    <col style="width: 47%;" />
+    <col style="width: 6%;" />
+    <col style="width: 47%;" />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        <span data-overload="place">{frontmatter.overload.place}</span>,{" "}
+        <span data-overload="date">{frontmatter.overload.date}</span>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+        <span data-overload="place">{frontmatter.overload.place}</span>,{" "}
+        <span data-overload="date">{frontmatter.overload.date}</span>
+      </td>
+    </tr>
+    <tr style="height: 4em;">
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <b>
+          <span data-overload="organization.referal">
+            {frontmatter.overload.organization.referal}
+          </span>
+        </b>
+        <br />
+        Bestyrelsesformand
+      </td>
+      <td>&nbsp;</td>
+      <td>
+        <b>
+          <span data-overload="director.referal">
+            {frontmatter.overload.director.referal}
+          </span>
+        </b>
+      </td>
+    </tr>
+    <tr style="height: 4em;">
+      <td style="border-bottom: 1px solid black;">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        <b>
+          <span data-overload="organization.referal">
+            {frontmatter.overload.organization.referal}
+          </span>
+        </b>
+        <br />
+        Bestyrelsesmedlem
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
