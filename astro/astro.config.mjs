@@ -195,7 +195,12 @@ export default defineConfig({
         Footer: "./src/components/overrides/Footer.astro",
       },
       customCss: siteConfig.customCss,
-      defaultLocale: siteConfig.defaultLocale,
+      // Starlight docs: omit defaultLocale entirely when the default
+      // language is the root locale — passing the literal string "root"
+      // breaks locale-aware URL generation (all links end up wrongly
+      // prefixed with the root locale's `lang` code, e.g. "/en/...").
+      defaultLocale:
+        siteConfig.defaultLocale === "root" ? undefined : siteConfig.defaultLocale,
       locales: siteConfig.locales,
       social: siteConfig.social,
       sidebar: siteConfig.sidebar,

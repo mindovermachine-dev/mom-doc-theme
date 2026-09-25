@@ -15,7 +15,9 @@ export async function resolveSiteConfig() {
   let overrides = {};
   const generatedConfigPath = process.env.REMOTE_THEME_SITE_CONFIG;
   if (generatedConfigPath) {
-    const mod = await import(pathToFileURL(generatedConfigPath).href);
+    const mod = await import(
+      /* @vite-ignore */ pathToFileURL(generatedConfigPath).href
+    );
     overrides = mod.default ?? {};
   }
 
