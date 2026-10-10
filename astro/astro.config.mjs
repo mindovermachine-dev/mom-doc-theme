@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, mergeConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import pdf from "astro-pdf";
 import { accessSync, constants, readFileSync } from "node:fs";
@@ -157,9 +157,9 @@ const pdfIntegration =
       })
     : null;
 
-// https://astro.build/config
-export default defineConfig({
+const themeConfig = defineConfig({
   outDir: process.env.REMOTE_THEME_OUT_DIR || undefined,
+  site: siteConfig.site,
   markdown: {
     remarkPlugins: [remarkAttrForMdx, remarkLegalClauses],
     rehypePlugins: [
@@ -212,3 +212,6 @@ export default defineConfig({
     ...frontmatterRedirects,
   },
 });
+
+// A content repo's `astro` key (raw Astro config) is merged over the theme's config.
+export default mergeConfig(themeConfig, siteConfig.astro ?? {});
