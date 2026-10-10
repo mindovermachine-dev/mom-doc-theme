@@ -1,5 +1,5 @@
 ---
-# cspell: ignore mindovermachine 
+# cspell: ignore mindovermachine
 title: Getting started
 description: Build a documentation site from a content-only repo using this theme.
 sidebar:
@@ -33,7 +33,7 @@ There is no Astro config, no `src/` and no Starlight setup in your repo.
        "preview": "remote-astro-theme preview"
      },
      "devDependencies": {
-       "remote-astro-theme": "^0.1.0"
+       "@mindovermachine-dev/remote-astro-theme": "^0.1.0"
      }
    }
    ```

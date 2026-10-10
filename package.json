@@ -21,6 +21,6 @@
     "linkinator": "^7.6.1",
     "markdownlint-cli2": "^0.11.0",
     "prettier": "^2.8.8",
-    "remote-astro-theme": "github:mindovermachine-dev/remote-astro-theme#main"
+    "@mindovermachine-dev/remote-astro-theme": "^0.1.0"
   }
 }
