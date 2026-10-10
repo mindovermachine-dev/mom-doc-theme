@@ -1,3 +1,4 @@
 {
-  "astroRoot": "astro"
+  "astroRoot": "astro",
+  "contentLink": "src/content/docs"
 }

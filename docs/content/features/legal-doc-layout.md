@@ -1,4 +1,7 @@
-# LegalDoc Layout in Astro/Starlight
+---
+title: "LegalDoc layout"
+description: "Layout system for legal-style documents: numbering, clauses and opt-outs."
+---
 
 This page documents the layout system used for legal-style documents in this repository.
 

@@ -32,3 +32,7 @@ astro/public/version.txt
 # is driven by remote-astro-theme rather than run standalone
 astro/.remote-theme/
 
+
+# content symlinked in by remote-astro-theme
+astro/src/content/docs
+astro/src/assets/remote

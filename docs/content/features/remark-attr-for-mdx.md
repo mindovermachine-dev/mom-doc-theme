@@ -1,4 +1,7 @@
-# Remark-Attr for MDX in Astro
+---
+title: "Remark-attr for MDX"
+description: "Attach attributes to the preceding element with a trailing directive."
+---
 
 This repository implements a small, Astro-native attribute directive system inspired by the `remark-attr` family of plugins.
 
@@ -42,7 +45,7 @@ If you want to move this feature to another Astro repo, these are the relevant f
 
 ### Markdown/MDX transform
 
-- [astro/src/config/remark-attr-for-mdx.mjs](../astro/src/config/remark-attr-for-mdx.mjs)
+- [astro/src/config/remark-attr-for-mdx.mjs](https://github.com/mindovermachine-dev/mom-doc-theme/blob/main/astro/src/config/remark-attr-for-mdx.mjs)
 
 This is the core remark plugin.
 
@@ -55,7 +58,7 @@ It currently:
 
 ### Astro config wiring
 
-- [astro/astro.config.mjs](../astro/astro.config.mjs)
+- [astro/astro.config.mjs](https://github.com/mindovermachine-dev/mom-doc-theme/blob/main/astro/astro.config.mjs)
 
 This registers the plugin in `markdown.remarkPlugins`.
 
@@ -72,7 +75,7 @@ If you want to port this to a different Astro project, the minimum setup is:
 3. Use MDX-compatible directive syntax in content (`<remark-attr ... />`) or keep legacy brace syntax where desired.
 4. Add one or more content examples to validate class, id, and style propagation.
 
-If you also want legal layout and numbering behavior, document and implement that separately in [LegalDoc Layout](./legalDoc-layout.md).
+If you also want legal layout and numbering behavior, document and implement that separately in [LegalDoc Layout](/mom-doc-theme/features/legal-doc-layout/).
 
 ## Important Astro/MDX caveat
 

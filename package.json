@@ -11,12 +11,16 @@
     "install:repo": "npm install",
     "check-links": "linkinator . /da/ --server-root astro/dist --recurse",
     "check-links:files": "node scripts/check-links-with-sources.mjs",
-    "write-version": "printf 'Build from %s\\nRef: %s\\nCommit: %s\\n' \"${BUILD_REPO:-$(git remote get-url origin)}\" \"${BUILD_REF:-$(git branch --show-current)}\" \"${BUILD_SHA:-$(git rev-parse HEAD)}\" > astro/public/version.txt"
+    "write-version": "printf 'Build from %s\\nRef: %s\\nCommit: %s\\n' \"${BUILD_REPO:-$(git remote get-url origin)}\" \"${BUILD_REF:-$(git branch --show-current)}\" \"${BUILD_SHA:-$(git rev-parse HEAD)}\" > astro/public/version.txt",
+    "docs:dev": "remote-astro-theme dev",
+    "docs:build": "remote-astro-theme build",
+    "docs:preview": "remote-astro-theme preview"
   },
   "devDependencies": {
     "cspell": "^6.28.0",
+    "linkinator": "^7.6.1",
     "markdownlint-cli2": "^0.11.0",
     "prettier": "^2.8.8",
-    "linkinator": "^7.6.1"
+    "remote-astro-theme": "github:mindovermachine-dev/remote-astro-theme#main"
   }
 }
