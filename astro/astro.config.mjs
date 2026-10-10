@@ -200,7 +200,9 @@ const themeConfig = defineConfig({
       // breaks locale-aware URL generation (all links end up wrongly
       // prefixed with the root locale's `lang` code, e.g. "/en/...").
       defaultLocale:
-        siteConfig.defaultLocale === "root" ? undefined : siteConfig.defaultLocale,
+        siteConfig.defaultLocale === "root"
+          ? undefined
+          : siteConfig.defaultLocale,
       locales: siteConfig.locales,
       social: siteConfig.social,
       sidebar: siteConfig.sidebar,

@@ -143,12 +143,11 @@ waves:
       - "build"
 
   - id: "trunk-worthy"
-    name: "Worthy for trunk - build"
+    name: "Worthy for trunk - linting and spell-checking"
     parallel: true
     checks:
       - "cspell"
       - "markdownlint"
-      - "build"
       - "prettier"
 
   - id: "link-checker"
