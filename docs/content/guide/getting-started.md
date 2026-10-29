@@ -4,6 +4,7 @@ title: Getting started
 description: Build a documentation site from a content-only repo using this theme.
 sidebar:
   order: 1
+redirectFrom: /
 ---
 
 `mom-doc-theme` is a complete [Astro](https://astro.build) + [Starlight](https://starlight.astro.build) project. You do not copy it. A content repo references it by git coordinate, and [remote-astro-theme](https://github.com/mindovermachine-dev/remote-astro-theme) fetches it and builds your content with it.

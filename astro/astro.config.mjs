@@ -64,6 +64,25 @@ function normalizePathname(pathname) {
   return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
 }
 
+const basePath = normalizePathname(siteConfig.astro?.base ?? "/");
+
+function withBasePath(pathname) {
+  if (
+    typeof pathname !== "string" ||
+    !pathname.startsWith("/") ||
+    basePath === "/"
+  ) {
+    return pathname;
+  }
+
+  const routePath = normalizePathname(pathname.split(/[?#]/, 1)[0]);
+  if (routePath === basePath || routePath.startsWith(`${basePath}/`)) {
+    return pathname;
+  }
+
+  return `${basePath}${pathname}`;
+}
+
 function findExecutablePath(candidates) {
   for (const candidate of candidates) {
     try {
@@ -210,8 +229,15 @@ const themeConfig = defineConfig({
     ...(pdfIntegration ? [pdfIntegration] : []),
   ],
   redirects: {
-    ...(siteConfig.rootRedirect ? { "/": siteConfig.rootRedirect } : {}),
-    ...frontmatterRedirects,
+    ...(siteConfig.rootRedirect
+      ? { "/": withBasePath(siteConfig.rootRedirect) }
+      : {}),
+    ...Object.fromEntries(
+      Object.entries(frontmatterRedirects).map(([source, target]) => [
+        source,
+        withBasePath(target),
+      ]),
+    ),
   },
 });
 

@@ -23,16 +23,6 @@ sidebar:
 | `sidebar`       | Starlight `sidebar`. See below.                                                            |
 | `astro`         | Raw Astro config merged over the theme's. Use for `base`, `server`, `vite` and similar.    |
 
-## Sidebar
-
-Use `autogenerate` per folder. Starlight 0.39 needs the group `label` and an `items` array:
-
-```js
-sidebar: [
-  { label: "Guide", items: [{ autogenerate: { directory: "guide" } }] },
-];
-```
-
 Order pages inside a group with `sidebar: { order: N }` in frontmatter. Lower numbers come first.
 
 ## Frontmatter
