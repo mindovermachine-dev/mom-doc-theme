@@ -25,7 +25,7 @@ An optional manifest at the repo root tells the CLI where things are:
 | `contentLink` | `.remote-theme/content` | Where the CLI symlinks the content repo's `docs/content`, inside `astroRoot`. |
 | `assetsLink`  | `src/assets/remote`     | Where the CLI symlinks `docs/assets`, inside `astroRoot`.                     |
 
-This theme sets `contentLink` to `src/content/docs` because Starlight's `autogenerate` only recognises that path.
+This theme sets `contentLink` to `src/content/docs` because Starlight's `autogenerate` only recognizes that path.
 
 ## What the CLI hands to the theme
 

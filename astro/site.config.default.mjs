@@ -19,5 +19,5 @@ export default {
       label: "GitHub",
       href: "https://github.com/mindovermachine-dev",
     },
-  ]
+  ],
 };
