@@ -114,6 +114,32 @@ const isLegalDoc = starlightRoute.entry.data.docLayout === "legalDoc";
   )
 }
 
+<script>
+  const renderMermaidDiagrams = async () => {
+    document
+      .querySelectorAll<HTMLElement>('pre[data-language="mermaid"]')
+      .forEach((block) => {
+        const lines = block.querySelectorAll<HTMLElement>(".ec-line");
+        const diagram =
+          lines.length > 0
+            ? Array.from(lines, (line) => line.textContent ?? "").join("\n")
+            : (block.textContent ?? "");
+        block.classList.add("mermaid");
+        block.textContent = diagram;
+      });
+
+    const diagrams = document.querySelectorAll<HTMLElement>("pre.mermaid");
+    if (diagrams.length === 0) return;
+
+    const { default: mermaid } = await import("mermaid");
+    mermaid.initialize({ startOnLoad: false });
+    await mermaid.run({ nodes: diagrams });
+  };
+
+  document.addEventListener("astro:page-load", renderMermaidDiagrams);
+  void renderMermaidDiagrams();
+</script>
+
 <style>
   @layer starlight.core {
     .content-panel {

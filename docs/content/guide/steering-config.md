@@ -33,9 +33,10 @@ Standard Starlight frontmatter applies, plus:
 | :------------------------------ | :----------------------------------------------------------------------------------------- |
 | `redirect-from`, `redirectFrom` | One or more old URLs that redirect to this page.                                           |
 | `giscus`                        | Boolean. Enables or disables the Giscus comment widget on the page.                        |
-| `pdf`                           | Boolean. Also render this page to PDF (needs Chromium).                                    |
 | `docLayout`                     | `default` or `legalDoc`. See [LegalDoc layout](/mom-doc-theme/features/legal-doc-layout/). |
+
+The theme does not generate downloadable PDF files. Legal documents retain a browser-native print action, which can also be used to save a PDF.
 
 ## Not yet configurable
 
-Giscus settings and PDF options are still defined inside the theme (`astro/src/config/giscus.mjs`). PDF output needs a Chromium binary at a standard path, or `PDF_BROWSER_PATH` set.
+Giscus settings are still defined inside the theme (`astro/src/config/giscus.mjs`).
