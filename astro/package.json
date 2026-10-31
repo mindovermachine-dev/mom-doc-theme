@@ -2,6 +2,9 @@
   "name": "lean-crowd-manifest",
   "type": "module",
   "version": "0.0.1",
+  "scripts": {
+    "postinstall": "playwright install chromium-headless-shell"
+  },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "astro": "^6.3.3",
