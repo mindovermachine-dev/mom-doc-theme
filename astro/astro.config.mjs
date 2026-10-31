@@ -3,6 +3,7 @@ import starlight from "@astrojs/starlight";
 import pdf from "astro-pdf";
 import { accessSync, constants, readFileSync } from "node:fs";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeMermaid from "rehype-mermaid";
 import remarkAttrForMdx from "./src/config/remark-attr-for-mdx.mjs";
 import remarkLegalClauses from "./src/config/remark-legal-clauses.mjs";
 import { collectFrontmatterRedirects } from "./src/config/frontmatter-redirects.mjs";
@@ -182,6 +183,15 @@ const themeConfig = defineConfig({
   markdown: {
     remarkPlugins: [remarkAttrForMdx, remarkLegalClauses],
     rehypePlugins: [
+      [
+        rehypeMermaid,
+        {
+          launchOptions: {
+            executablePath: getPdfBrowserExecutablePath() ?? undefined,
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+          },
+        },
+      ],
       [
         rehypeExternalLinks,
         {
