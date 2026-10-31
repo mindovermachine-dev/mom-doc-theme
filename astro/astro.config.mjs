@@ -1,13 +1,9 @@
 import { defineConfig, mergeConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import pdf from "astro-pdf";
-import { accessSync, constants, readFileSync } from "node:fs";
 import rehypeExternalLinks from "rehype-external-links";
-import rehypeMermaid from "rehype-mermaid";
 import remarkAttrForMdx from "./src/config/remark-attr-for-mdx.mjs";
 import remarkLegalClauses from "./src/config/remark-legal-clauses.mjs";
 import { collectFrontmatterRedirects } from "./src/config/frontmatter-redirects.mjs";
-import { collectFrontmatterPdfPages } from "./src/config/frontmatter-pdf-pages.mjs";
 import {
   giscusClientConfig,
   giscusEnabledByDefault,
@@ -31,33 +27,6 @@ const frontmatterRedirects = collectFrontmatterRedirects({
     );
   },
 });
-
-function getVersionFooterText() {
-  try {
-    const versionText = readFileSync(
-      new URL("./public/version.txt", import.meta.url),
-      "utf8",
-    );
-    const normalized = versionText
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .join(" | ");
-
-    return normalized || "NO VERSION INFO";
-  } catch {
-    return "NO VERSION INFO";
-  }
-}
-
-function escapeHtml(value) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
 
 function normalizePathname(pathname) {
   if (!pathname) return "/";
@@ -84,43 +53,6 @@ function withBasePath(pathname) {
   return `${basePath}${pathname}`;
 }
 
-function findExecutablePath(candidates) {
-  for (const candidate of candidates) {
-    try {
-      accessSync(candidate, constants.X_OK);
-      return candidate;
-    } catch {
-      continue;
-    }
-  }
-
-  return null;
-}
-
-function getPdfBrowserExecutablePath() {
-  const envPath =
-    process.env.PDF_BROWSER_PATH ?? process.env.PUPPETEER_EXECUTABLE_PATH;
-  if (envPath) {
-    return envPath;
-  }
-
-  return findExecutablePath([
-    "/usr/bin/chromium",
-    "/usr/bin/chromium-browser",
-    "/usr/bin/google-chrome",
-    "/usr/bin/google-chrome-stable",
-    "/snap/bin/chromium",
-  ]);
-}
-
-const pdfPages = collectFrontmatterPdfPages({
-  docsRoot: new URL(siteConfig.contentRoot, import.meta.url),
-  localePrefixes,
-});
-
-const pdfPageSet = new Set(pdfPages.map(normalizePathname));
-const footerVersionText = escapeHtml(getVersionFooterText());
-const pdfBrowserExecutablePath = getPdfBrowserExecutablePath();
 const hasRequiredGiscusConfig =
   Boolean(giscusClientConfig.src) &&
   Boolean(giscusClientConfig.attributes["data-repo"]);
@@ -142,56 +74,12 @@ if (giscusEnabledByDefault) {
   );
 }
 
-if (pdfPageSet.size > 0 && !pdfBrowserExecutablePath) {
-  throw new Error(
-    "No PDF browser executable found. Run 'gh insitu run post-create' or 'gh insitu run prep-runner' so Chromium is installed, or set PDF_BROWSER_PATH.",
-  );
-}
-
-const pdfIntegration =
-  pdfPageSet.size > 0
-    ? pdf({
-        launch: {
-          executablePath: pdfBrowserExecutablePath,
-          args: ["--no-sandbox", "--disable-setuid-sandbox"],
-        },
-        pages: (pathname) =>
-          pdfPageSet.has(normalizePathname(pathname)) ? true : false,
-        baseOptions: {
-          path: "/pdf[pathname].pdf",
-          throwOnFail: true,
-          pdf: {
-            format: "A4",
-            printBackground: true,
-            displayHeaderFooter: true,
-            margin: {
-              top: "20mm",
-              right: "12mm",
-              bottom: "22mm",
-              left: "12mm",
-            },
-            headerTemplate: "<div></div>",
-            footerTemplate: `<div style=\"width:100%;font-size:8px;padding:0 16px;color:#555;text-align:center;\">${footerVersionText}</div>`,
-          },
-        },
-      })
-    : null;
-
 const themeConfig = defineConfig({
   outDir: process.env.REMOTE_THEME_OUT_DIR || undefined,
   site: siteConfig.site,
   markdown: {
     remarkPlugins: [remarkAttrForMdx, remarkLegalClauses],
     rehypePlugins: [
-      [
-        rehypeMermaid,
-        {
-          launchOptions: {
-            executablePath: getPdfBrowserExecutablePath() ?? undefined,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"],
-          },
-        },
-      ],
       [
         rehypeExternalLinks,
         {
@@ -236,7 +124,6 @@ const themeConfig = defineConfig({
       social: siteConfig.social,
       sidebar: siteConfig.sidebar,
     }),
-    ...(pdfIntegration ? [pdfIntegration] : []),
   ],
   redirects: {
     ...(siteConfig.rootRedirect

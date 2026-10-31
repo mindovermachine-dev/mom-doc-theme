@@ -64,7 +64,7 @@ This registers the plugin in `markdown.remarkPlugins`.
 
 It also wires:
 
-- the existing external links and PDF setup
+- the existing external link handling
 
 ## Transfer checklist for another Astro repo
 

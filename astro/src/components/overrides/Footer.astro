@@ -6,39 +6,15 @@ import { isGiscusEnabled } from "../../config/giscus.mjs";
 // Starlight exposes route data via Astro.locals.starlightRoute, not as a prop.
 // It may be undefined on non-doc routes (e.g. 404).
 const routeData = Astro.locals.starlightRoute as
-  | typeof Astro.locals.starlightRoute
-  | undefined;
+  typeof Astro.locals.starlightRoute | undefined;
 const entry = routeData?.entry;
 
-const pdfEnabled = entry !== undefined && entry.data.pdf === true;
 const giscusEnabled = entry !== undefined && isGiscusEnabled(entry.data.giscus);
 
 // Derive locale from the entry id (e.g. "da/about/contact" → "da")
 const locale = entry?.id.split("/")[0];
 const giscusLang = locale === "da" ? "da" : "en";
-const pagePath = routeData?.id ? `/${routeData.id}` : "";
-const pdfHref = pdfEnabled ? `/pdf${pagePath}.pdf` : "";
-const pdfLabel = locale === "da" ? "Download PDF" : "Download PDF";
 ---
 
-{
-  pdfEnabled && (
-    <p class="pdf-download-link">
-      <a href={pdfHref} download>
-        {pdfLabel}
-      </a>
-    </p>
-  )
-}
 {giscusEnabled && <Giscus lang={giscusLang} />}
 <Default {...Astro.props}><slot /></Default>
-
-<style>
-  .pdf-download-link {
-    margin-top: 1rem;
-  }
-
-  .pdf-download-link a {
-    font-weight: 600;
-  }
-</style>
